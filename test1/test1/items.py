@@ -9,7 +9,9 @@ import scrapy
 class NewItem(scrapy.Item):
     name = scrapy.Field()
     type = scrapy.Field()
-    location = scrapy.Field()
+    location_1 = scrapy.Field()
+    location_2 = scrapy.Field()
+    location_3 = scrapy.Field()
     houseType = scrapy.Field()
     area = scrapy.Field()
     unitPrice = scrapy.Field()

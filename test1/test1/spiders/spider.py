@@ -1,4 +1,5 @@
 import scrapy
+import re
 from test1.items import NewItem
 from test1.items import SecondItem
 
@@ -15,12 +16,24 @@ class NewSpider(scrapy.spiders.Spider):
         for each in response.xpath('//*[@class="resblock-list post_ulog_exposure_scroll has-results"]'):
             item['name'] = each.xpath('.//a[@class="name "]/text()').extract()
             item['type'] = each.xpath('.//span[@class="resblock-type"]/text()').extract()
-            item['location'] = each.xpath('.//div[@class="resblock-location"]/span/text()').extract()+each.xpath('.//div[@class="resblock-location"]/a/text()').extract()
-            item['houseType'] = each.xpath('.//a[@class="resblock-room"]/span/text()').extract()
-            item['area'] = each.xpath('.//div[@class="resblock-area"]/span/text()').extract()
-            item['unitPrice'] = each.xpath('.//div[@class="main-price"]/span/text()').extract()
-            item['unitPrice'][1] = item['unitPrice'][1].replace(u'\xa0', '')
-            item['totalPrice'] = each.xpath('.//div[@class="second"]/text()').extract()
+            item['location_1'] = each.xpath('.//div[@class="resblock-location"]/span/text()').extract()[0].split()
+            item['location_2'] = each.xpath('.//div[@class="resblock-location"]/span/text()').extract()[1].split()
+            item['location_3'] = each.xpath('.//div[@class="resblock-location"]/a/text()').extract()
+            housetype = each.xpath('.//a[@class="resblock-room"]/span/text()').extract()
+            if not housetype:
+                item['houseType'] = housetype
+            else:
+                item['houseType'] = housetype[0].split()
+            area = each.xpath('.//div[@class="resblock-area"]/span/text()').extract()
+            if not area:
+                item['area'] = area
+            else:
+                numbers = re.findall(r'\d+', area[0])
+                item['area'] = numbers[0].split()
+            item['unitPrice'] = each.xpath('.//div[@class="main-price"]/span/text()').extract()[0].split()
+            totalprice = each.xpath('.//div[@class="second"]/text()').extract()[0]
+            numbers2 = re.findall(r'\d+', totalprice)
+            item['totalPrice'] = numbers2[0].split()
             yield item
 
         for i in range(4, 8):

@@ -7,7 +7,7 @@ from twisted.internet import reactor
 configure_logging()
 runner = CrawlerRunner()
 runner.crawl(NewSpider)
-runner.crawl(SecondSpider)
+# runner.crawl(SecondSpider)
 d = runner.join()
 d.addBoth(lambda _: reactor.stop())
 reactor.run()
