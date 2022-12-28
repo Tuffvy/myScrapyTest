@@ -6,24 +6,12 @@
 import scrapy
 
 
-class NewItem(scrapy.Item):
+class RentItem(scrapy.Item):
     name = scrapy.Field()
     type = scrapy.Field()
     location_1 = scrapy.Field()
     location_2 = scrapy.Field()
-    location_3 = scrapy.Field()
-    houseType = scrapy.Field()
+    forward = scrapy.Field()
     area = scrapy.Field()
-    unitPrice = scrapy.Field()
-    totalPrice = scrapy.Field()
-    pass
-
-
-class SecondItem(scrapy.Item):
-    name = scrapy.Field()
-    location = scrapy.Field()
-    houseType = scrapy.Field()
-    area = scrapy.Field()
-    unitPrice = scrapy.Field()
-    totalPrice = scrapy.Field()
+    price = scrapy.Field()
     pass

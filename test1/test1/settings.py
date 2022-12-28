@@ -15,7 +15,13 @@ BOT_NAME = 'test1'
 SPIDER_MODULES = ['test1.spiders']
 NEWSPIDER_MODULE = 'test1.spiders'
 
-ITEM_PIPELINES = {'test1.pipelines.NewHouse': 300, 'test1.pipelines.SecondHouse': 400}
+ITEM_PIPELINES = {
+    'test1.pipelines.RentHouseBJ': 100,
+    'test1.pipelines.RentHouseSH': 200,
+    'test1.pipelines.RentHouseSZ': 300,
+    'test1.pipelines.RentHouseGZ': 400,
+    'test1.pipelines.RentHouseBT': 500,
+}
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
