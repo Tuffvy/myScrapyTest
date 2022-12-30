@@ -9,8 +9,8 @@ from twisted.internet import reactor
 
 configure_logging()
 runner = CrawlerRunner()
-# runner.crawl(RentSpiderBJ)
-# runner.crawl(RentSpiderSH)
+runner.crawl(RentSpiderBJ)
+runner.crawl(RentSpiderSH)
 runner.crawl(RentSpiderSZ)
 runner.crawl(RentSpiderGZ)
 runner.crawl(RentSpiderBT)

@@ -1,7 +1,6 @@
 import ast
 import matplotlib.pyplot as plt
 import matplotlib
-import numpy as np
 
 matplotlib.rcParams['font.sans-serif'] = ['SimHei']
 data_BT = []
@@ -175,8 +174,10 @@ def draw_4(typeprice):
         ax[i].set_xticklabels(cities)
         bar_width = 0.2
         ax[i].bar(range(len(cities)), one[i], bar_width, label='一居室')
-        ax[i].bar([x + bar_width for x in range(len(cities))], two[i], bar_width, label='二居室')
-        ax[i].bar([x + 2 * bar_width for x in range(len(cities))], three[i], bar_width, label='三居室')
+        ax[i].bar([x + bar_width for x in range(len(cities))],
+                  two[i], bar_width, label='二居室')
+        ax[i].bar([x + 2 * bar_width for x in range(len(cities))],
+                  three[i], bar_width, label='三居室')
         ax[i].legend()
         ax[i].set_title(typetemp[i])
     plt.suptitle('不同城市间一、二、三居室租金对比')
